@@ -114,7 +114,7 @@ It may be beneficial for you to create extra methods within the droid sub classe
 | Total                      | 100    |
 
 ## Outside Resources Used
-None
+None -
 
 
 ## Known Problems, Issues, And/Or Errors in the Program
