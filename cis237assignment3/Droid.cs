@@ -26,6 +26,7 @@ namespace cis237assignment3
                 {"Nevo-Titanium", "2" },
                 {"Areogel","2.5" },
                 {"Atomic-Aluminum","5" }};
+        string[] _mechList = { "Protoco", "Utility", "Janitor", "Astromech" };
 
         //***************************************
         //Properties
@@ -49,7 +50,23 @@ namespace cis237assignment3
 
         public void CalculateTotalCost()
         {
-            throw new NotImplementedException();
+            decimal materialMultiplier = MaterialCostMultiplier(_materialString);
+            switch (_modelString)
+            {
+                case "Protoco":
+                    _baseCostDecimal = 500m;
+                    break;
+                case "Utility":
+                    _baseCostDecimal = 200m;
+                    break;
+                case "Janitor":
+                    _baseCostDecimal = 350m;
+                    break;
+                case "Astromech":
+                    _baseCostDecimal = 450m;
+                    break;
+            }
+            _totalCostDecimal = _baseCostDecimal * materialMultiplier;
         }
 
         public override string ToString()
@@ -67,7 +84,7 @@ namespace cis237assignment3
         /// </summary>
         /// <param name="Material"></param>
         /// <returns>decimal</returns>
-        public decimal MaterialCost(string Material)
+        public decimal MaterialCostMultiplier(string Material)
         {
             decimal materialCostDecimal = 0;
 
@@ -81,6 +98,8 @@ namespace cis237assignment3
 
             return materialCostDecimal;
         }
+
+
         //***************************************
         //Constructor
         //***************************************

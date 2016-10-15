@@ -13,6 +13,10 @@ namespace cis237assignment3
     {
         static void Main(string[] args)
         {
+            string materialTest = "plastic";
+            string mechTest = "astro";
+            string colorTech = "red";
+            Droid testDroid = new Droid(materialTest,mechTest,colorTech);
         }
     }
 }
