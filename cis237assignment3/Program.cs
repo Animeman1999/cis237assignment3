@@ -14,15 +14,22 @@ namespace cis237assignment3
         static void Main(string[] args)
         {
             string materialTest = "plastic";
-            string mechTest = "Protoco"; 
+            string DroidTypeTest = "Protoco"; 
             string colorTest = "red";
             int numberLanguagesTest = 1000;
-            Droid testDroid = new Protocol(materialTest,mechTest,colorTest, numberLanguagesTest);
+            Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
+            Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
 
             Console.WriteLine(testDroid);
-            testDroid.CalculateBaseCost();
+           // testDroid.CalculateBaseCost();
             testDroid.CalculateTotalCost();
             Console.WriteLine(testDroid.TotalCost.ToString());
+
+            Console.WriteLine(testDroid2);
+            //testDroid2.CalculateBaseCost();
+            testDroid2.CalculateTotalCost();
+            Console.WriteLine(testDroid2.TotalCost.ToString());
+
         }
     }
 }

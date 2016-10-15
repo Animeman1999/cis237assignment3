@@ -50,6 +50,7 @@ namespace cis237assignment3
 
         virtual public void CalculateTotalCost()
         {
+            CalculateBaseCost();
             _totalCostDecimal = _baseCostDecimal;
         }
 
@@ -77,6 +78,7 @@ namespace cis237assignment3
                     break;
             }
             _baseCostDecimal = _baseCostDecimal * materialMultiplier;
+            Console.WriteLine("Calculate base Cost =" + _baseCostDecimal);
         }
 
         /// <summary>
