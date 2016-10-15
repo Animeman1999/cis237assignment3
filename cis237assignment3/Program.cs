@@ -19,6 +19,7 @@ namespace cis237assignment3
             int numberLanguagesTest = 1000;
             Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
             Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
+            Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
 
             Console.WriteLine(testDroid);
            // testDroid.CalculateBaseCost();
@@ -29,6 +30,11 @@ namespace cis237assignment3
             //testDroid2.CalculateBaseCost();
             testDroid2.CalculateTotalCost();
             Console.WriteLine(testDroid2.TotalCost.ToString());
+
+            Console.WriteLine(testDroid3);
+            //testDroid2.CalculateBaseCost();
+            testDroid3.CalculateTotalCost();
+            Console.WriteLine(testDroid3.TotalCost.ToString());
 
         }
     }
