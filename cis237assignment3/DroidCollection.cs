@@ -11,7 +11,7 @@ namespace cis237assignment3
         //***************************************
         //Variables
         //***************************************
-        Droid[] droidItems;
+        Droid[] droidItemsCollection;
         int droidItemsLengthInt;
 
 
@@ -22,20 +22,20 @@ namespace cis237assignment3
 
         public void AddNewItem(string MaterialString, string ModelString, string ColorString, int NumberLanguagesInt)
         {
-            droidItems[droidItemsLengthInt] = new Protocol(MaterialString, ModelString, ColorString, NumberLanguagesInt);
+            droidItemsCollection[droidItemsLengthInt] = new Protocol(MaterialString, ModelString, ColorString, NumberLanguagesInt);
             droidItemsLengthInt++;
         }
 
         public void AddNewItem(string MaterialString, string ModelString, string ColorString, bool ToolboxBool, bool ComputerConnectionBool, bool ArmBool)
         {
-            droidItems[droidItemsLengthInt] = new Utility(MaterialString, ModelString, ColorString, ToolboxBool, ComputerConnectionBool, ArmBool);
+            droidItemsCollection[droidItemsLengthInt] = new Utility(MaterialString, ModelString, ColorString, ToolboxBool, ComputerConnectionBool, ArmBool);
             droidItemsLengthInt++;
         }
 
-        public void AddNewItem (string MaterialString, string ModelString, string ColorString, bool ToolboxBool,
+        public void AddNewItem(string MaterialString, string ModelString, string ColorString, bool ToolboxBool,
             bool ComputerConnectionBool, bool ArmBool, bool TrashCompactorBool, bool VacuumBool)
         {
-            droidItems[droidItemsLengthInt] = new Janitor(MaterialString, ModelString, ColorString, ToolboxBool,
+            droidItemsCollection[droidItemsLengthInt] = new Janitor(MaterialString, ModelString, ColorString, ToolboxBool,
             ComputerConnectionBool, ArmBool, TrashCompactorBool, VacuumBool);
             droidItemsLengthInt++;
         }
@@ -43,9 +43,28 @@ namespace cis237assignment3
         public void AddNewItem(string MaterialString, string ModelString, string ColorString, bool ToolboxBool,
             bool ComputerConnectionBool, bool ArmBool, bool FireExtinquisher, int NumberShips)
         {
-            droidItems[droidItemsLengthInt] = new Astromech(MaterialString, ModelString, ColorString, ToolboxBool,
+            droidItemsCollection[droidItemsLengthInt] = new Astromech(MaterialString, ModelString, ColorString, ToolboxBool,
             ComputerConnectionBool, ArmBool, FireExtinquisher, NumberShips);
             droidItemsLengthInt++;
+        }
+
+        public string[] GetListOfAllDroids()
+        {
+            string[] listOfAllDroids = new string[droidItemsLengthInt];
+            int counter = 0;
+            if (droidItemsLengthInt > 0 )
+            {
+                foreach (Droid droid in droidItemsCollection)
+                {
+                    if (droid != null)
+                    {
+                        listOfAllDroids[counter] = droid.ToString();
+                        counter++;
+                    }
+                }
+            }
+
+            return listOfAllDroids;
         }
 
 
@@ -53,9 +72,9 @@ namespace cis237assignment3
         //Constructor
         //***************************************
 
-        DroidCollection (int Size)
+        public DroidCollection (int Size)
         {
-            droidItems = new Droid[Size];
+            droidItemsCollection = new Droid[Size];
             droidItemsLengthInt = 0;
         }
 

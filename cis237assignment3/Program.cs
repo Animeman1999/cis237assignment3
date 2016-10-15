@@ -17,10 +17,20 @@ namespace cis237assignment3
             string DroidTypeTest = "Protoco"; 
             string colorTest = "red";
             int numberLanguagesTest = 1000;
+
+            string[] outputString;
+
+
             Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
             Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
             Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
             Droid testDroid4 = new Astromech("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
+
+            DroidCollection droidCollection = new DroidCollection(1000);
+            droidCollection.AddNewItem(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
+            droidCollection.AddNewItem("steele", "Utility", "white", true, true, true);
+            droidCollection.AddNewItem("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
+            droidCollection.AddNewItem("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
 
             Console.WriteLine(testDroid);
            // testDroid.CalculateBaseCost();
@@ -41,6 +51,13 @@ namespace cis237assignment3
             //testDroid2.CalculateBaseCost();
             testDroid4.CalculateTotalCost();
             Console.WriteLine(testDroid4.TotalCost.ToString());
+
+            outputString = droidCollection.GetListOfAllDroids();
+            Console.WriteLine("****************list****************");
+            for (int i =0; i < outputString.Length; i++ )
+            {
+                Console.WriteLine(outputString[i]);
+            }
 
         }
     }
