@@ -18,7 +18,7 @@ namespace cis237assignment3
         string _modelString;
         string _color_string;
         decimal _baseCostDecimal;
-        decimal _totalCostDecimal;
+        protected decimal _totalCostDecimal;
         string[,] _materialList =
             { { "plastic", ".5" },
                 {"steele", "1" },
@@ -48,7 +48,17 @@ namespace cis237assignment3
         //Method
         //***************************************
 
-        public void CalculateTotalCost()
+        virtual public void CalculateTotalCost()
+        {
+            _totalCostDecimal = _baseCostDecimal;
+        }
+
+        public override string ToString()
+        {
+            return _color_string + " " + _materialString + " "  + _modelString + " Droid" ;
+        }
+
+        public void CalculateBaseCost()
         {
             decimal materialMultiplier = MaterialCostMultiplier(_materialString);
             switch (_modelString)
@@ -66,17 +76,7 @@ namespace cis237assignment3
                     _baseCostDecimal = 450m;
                     break;
             }
-            _totalCostDecimal = _baseCostDecimal * materialMultiplier;
-        }
-
-        public override string ToString()
-        {
-            return _materialString + " " + _modelString + " " + _color_string;
-        }
-
-        public void CalculateBaseCost()
-        {
-
+            _baseCostDecimal = _baseCostDecimal * materialMultiplier;
         }
 
         /// <summary>
