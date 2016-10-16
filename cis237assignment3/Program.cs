@@ -38,57 +38,60 @@ namespace cis237assignment3
                     droidCollection.AddNewItem("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
 
                     ui.ListLoadedMessage();
-
-                    
-                    while (menuChoice != 4)                       
-                    {
-                        menuChoice = ui.MainMenu();
-                        switch (menuChoice)
-                        {
-                            case 1:
-                                ui.PrintDroidList( droidCollection.GetListOfAllDroids());
-                                break;
-                            case 2:
-                                ui.AddDroidSequence(droidCollection);
-                                break;
-                            case 3:
-                                break;
-                            default:
-                                ui.ExitMessage();
-                                break;
-                        }
-                   
-                    }
+         
                     break;
                 case 2:
-            
-                    Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
-                    Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
-                    Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
-                    Droid testDroid4 = new Astromech("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
+
+                    ui.AddDroidSequence(droidCollection);
+                   // Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
+                   // Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
+                   // Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
+                   // Droid testDroid4 = new Astromech("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
 
            
-                    Console.WriteLine(testDroid);
-                   // testDroid.CalculateBaseCost();
-                    testDroid.CalculateTotalCost();
-                    Console.WriteLine(testDroid.TotalCost.ToString());
+                   // Console.WriteLine(testDroid);
+                   //// testDroid.CalculateBaseCost();
+                   // testDroid.CalculateTotalCost();
+                   // Console.WriteLine(testDroid.TotalCost.ToString());
 
-                    Console.WriteLine(testDroid2);
-                    //testDroid2.CalculateBaseCost();
-                    testDroid2.CalculateTotalCost();
-                    Console.WriteLine(testDroid2.TotalCost.ToString());
+                   // Console.WriteLine(testDroid2);
+                   // //testDroid2.CalculateBaseCost();
+                   // testDroid2.CalculateTotalCost();
+                   // Console.WriteLine(testDroid2.TotalCost.ToString());
 
-                    Console.WriteLine(testDroid3);
-                    //testDroid2.CalculateBaseCost();
-                    testDroid3.CalculateTotalCost();
-                    Console.WriteLine(testDroid3.TotalCost.ToString());
+                   // Console.WriteLine(testDroid3);
+                   // //testDroid2.CalculateBaseCost();
+                   // testDroid3.CalculateTotalCost();
+                   // Console.WriteLine(testDroid3.TotalCost.ToString());
 
-                    Console.WriteLine(testDroid4);
-                    //testDroid2.CalculateBaseCost();
-                    testDroid4.CalculateTotalCost();
-                    Console.WriteLine(testDroid4.TotalCost.ToString());
+                   // Console.WriteLine(testDroid4);
+                   // //testDroid2.CalculateBaseCost();
+                   // testDroid4.CalculateTotalCost();
+                   // Console.WriteLine(testDroid4.TotalCost.ToString());
                     break;  
             }
+
+            while (menuChoice != 4)
+            {
+                menuChoice = ui.MainMenu();
+                switch (menuChoice)
+                {
+                    case 1:
+                        ui.PrintDroidList(droidCollection.GetListOfAllDroids());
+                        break;
+                    case 2:
+                        ui.AddDroidSequence(droidCollection);
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        ui.ExitMessage();
+                        break;
+                }
+
+            }
         }
+ 
+
     }
 }
