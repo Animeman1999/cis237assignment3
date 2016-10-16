@@ -14,51 +14,81 @@ namespace cis237assignment3
         static void Main(string[] args)
         {
             string materialTest = "plastic";
-            string DroidTypeTest = "Protoco"; 
+            string DroidTypeTest = "Protocol"; 
             string colorTest = "red";
             int numberLanguagesTest = 1000;
+            int menuChoice;
 
             string[] outputString;
 
-
-            Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
-            Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
-            Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
-            Droid testDroid4 = new Astromech("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
-
             DroidCollection droidCollection = new DroidCollection(1000);
-            droidCollection.AddNewItem(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
-            droidCollection.AddNewItem("steele", "Utility", "white", true, true, true);
-            droidCollection.AddNewItem("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
-            droidCollection.AddNewItem("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
 
-            Console.WriteLine(testDroid);
-           // testDroid.CalculateBaseCost();
-            testDroid.CalculateTotalCost();
-            Console.WriteLine(testDroid.TotalCost.ToString());
+            UserInterface ui = new UserInterface();
 
-            Console.WriteLine(testDroid2);
-            //testDroid2.CalculateBaseCost();
-            testDroid2.CalculateTotalCost();
-            Console.WriteLine(testDroid2.TotalCost.ToString());
+            ui.StartUserInterface();
 
-            Console.WriteLine(testDroid3);
-            //testDroid2.CalculateBaseCost();
-            testDroid3.CalculateTotalCost();
-            Console.WriteLine(testDroid3.TotalCost.ToString());
+            menuChoice = ui.LoadMenu();
 
-            Console.WriteLine(testDroid4);
-            //testDroid2.CalculateBaseCost();
-            testDroid4.CalculateTotalCost();
-            Console.WriteLine(testDroid4.TotalCost.ToString());
-
-            outputString = droidCollection.GetListOfAllDroids();
-            Console.WriteLine("****************list****************");
-            for (int i =0; i < outputString.Length; i++ )
+            switch (menuChoice)
             {
-                Console.WriteLine(outputString[i]);
-            }
+                case 1:             
+                    droidCollection.AddNewItem(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
+                    droidCollection.AddNewItem("steele", "Utility", "white", true, true, true);
+                    droidCollection.AddNewItem("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
+                    droidCollection.AddNewItem("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
 
+                    ui.ListLoadedMessage();
+
+                    
+                    while (menuChoice != 4)                       
+                    {
+                        menuChoice = ui.MainMenu();
+                        switch (menuChoice)
+                        {
+                            case 1:
+                                ui.PrintDroidList( droidCollection.GetListOfAllDroids());
+                                break;
+                            case 2:
+                                ui.AddDroidSequence(droidCollection);
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                ui.ExitMessage();
+                                break;
+                        }
+                   
+                    }
+                    break;
+                case 2:
+            
+                    Droid testDroid = new Protocol(materialTest, DroidTypeTest, colorTest, numberLanguagesTest);
+                    Droid testDroid2 = new Utility("steele", "Utility", "white", true, true, true);
+                    Droid testDroid3 = new Janitor("Plass-Steele", "Janitor", "blue", true, true, false, true, true);
+                    Droid testDroid4 = new Astromech("Nevo-Titanium", "Astromech", "orange", true, false, true, true, 10);
+
+           
+                    Console.WriteLine(testDroid);
+                   // testDroid.CalculateBaseCost();
+                    testDroid.CalculateTotalCost();
+                    Console.WriteLine(testDroid.TotalCost.ToString());
+
+                    Console.WriteLine(testDroid2);
+                    //testDroid2.CalculateBaseCost();
+                    testDroid2.CalculateTotalCost();
+                    Console.WriteLine(testDroid2.TotalCost.ToString());
+
+                    Console.WriteLine(testDroid3);
+                    //testDroid2.CalculateBaseCost();
+                    testDroid3.CalculateTotalCost();
+                    Console.WriteLine(testDroid3.TotalCost.ToString());
+
+                    Console.WriteLine(testDroid4);
+                    //testDroid2.CalculateBaseCost();
+                    testDroid4.CalculateTotalCost();
+                    Console.WriteLine(testDroid4.TotalCost.ToString());
+                    break;  
+            }
         }
     }
 }

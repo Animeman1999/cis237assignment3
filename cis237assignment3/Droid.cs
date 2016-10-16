@@ -26,11 +26,12 @@ namespace cis237assignment3
                 {"Nevo-Titanium", "2" },
                 {"Areogel","2.5" },
                 {"Atomic-Aluminum","5" }};
-        string[] _mechList = { "Protoco", "Utility", "Janitor", "Astromech" };
+        string[] _droidList = { "Protocol", "Utility", "Janitor", "Astromech" };
 
         //***************************************
         //Properties
         //***************************************
+
         public decimal TotalCost
         {
             get
@@ -64,7 +65,7 @@ namespace cis237assignment3
             decimal materialMultiplier = MaterialCostMultiplier(_materialString);
             switch (_modelString)
             {
-                case "Protoco":
+                case "Protocol":
                     _baseCostDecimal = 500m;
                     break;
                 case "Utility":

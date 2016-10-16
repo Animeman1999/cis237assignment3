@@ -114,7 +114,7 @@ It may be beneficial for you to create extra methods within the droid sub classe
 | Total                      | 100    |
 
 ## Outside Resources Used
-None -
+http://www.c-sharpcorner.com/code/448/code-to-auto-maximize-console-application-according-to-screen-width-in-c-sharp.aspx
 
 
 ## Known Problems, Issues, And/Or Errors in the Program
