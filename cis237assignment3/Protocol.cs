@@ -39,7 +39,7 @@ namespace cis237assignment3
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
-            base._totalCostDecimal += _numberLanguages * COST_PER_LANGUAGE; 
+            base.TotalCost += _numberLanguages * COST_PER_LANGUAGE; 
         }
         //***************************************
         //Constructor

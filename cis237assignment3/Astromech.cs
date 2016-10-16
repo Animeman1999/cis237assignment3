@@ -29,8 +29,8 @@ namespace cis237assignment3
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
-            if (_fireExtinquisher) { base._totalCostDecimal += FIRE_EXTINGUISHER_COST; }
-            base._totalCostDecimal += _numberShips * COST_PER_SHIP;
+            if (_fireExtinquisher) { base.TotalCost += FIRE_EXTINGUISHER_COST; }
+            base.TotalCost += _numberShips * COST_PER_SHIP;
         }
 
         //***************************************

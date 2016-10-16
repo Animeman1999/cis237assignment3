@@ -18,7 +18,7 @@ namespace cis237assignment3
         string _modelString;
         string _color_string;
         decimal _baseCostDecimal;
-        protected decimal _totalCostDecimal;
+        decimal _totalCostDecimal;
         string[,] _materialList =
             { { "plastic", ".5" },
                 {"steele", "1" },
@@ -40,7 +40,7 @@ namespace cis237assignment3
 
             set
             {
-                throw new NotImplementedException();
+                _totalCostDecimal = value;
             }
         }
 

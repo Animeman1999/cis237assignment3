@@ -31,8 +31,8 @@ namespace cis237assignment3
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
-            if (_trashCompactorBool) { base._totalCostDecimal += TRASH_COMPATOR_COST; }
-            if (_vacuumBool) { base._totalCostDecimal += VACUUM_COST; }
+            if (_trashCompactorBool) { base.TotalCost += TRASH_COMPATOR_COST; }
+            if (_vacuumBool) { base.TotalCost += VACUUM_COST; }
         }
         //***************************************
         //Constructor

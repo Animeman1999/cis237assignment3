@@ -37,9 +37,9 @@ namespace cis237assignment3
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
-            if (_toolboxBool) { base._totalCostDecimal += TOOL_BOX_COST; }
-            if (_computerConnectionBool) { base._totalCostDecimal += COMPUTER_CONNECTION_COST; }
-            if (_armBool) { base._totalCostDecimal += ARM_COST; }
+            if (_toolboxBool) { base.TotalCost += TOOL_BOX_COST; }
+            if (_computerConnectionBool) { base.TotalCost += COMPUTER_CONNECTION_COST; }
+            if (_armBool) { base.TotalCost += ARM_COST; }
         }
 
         //***************************************
