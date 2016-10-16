@@ -13,6 +13,11 @@ namespace cis237assignment3
 {
     class UserInterface
     {
+        //Utility Droids
+        bool toolboxBool;
+        bool computerConnectionBool;
+        bool armBool;
+
         string[,] _materialList =
                 { { "plastic", ".5" },
                 {"steele", "1" },
@@ -82,9 +87,11 @@ namespace cis237assignment3
         public void ListLoadedMessage()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Droid list has been loaded, Press any key to continue. . .");
-            Console.ReadKey();
+            Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.Write("- List Loaded -");
+            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
 
         private ConsoleKeyInfo MainMenuMessage()
@@ -118,11 +125,19 @@ namespace cis237assignment3
         }
         public void PrintDroidList(string[] OutputString)
         {
-            Console.WriteLine("****************list****************");
+            Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.Write("- Start List -");
+            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.WriteLine();
             for (int i = 0; i < OutputString.Length; i++)
             {
                 Console.WriteLine(OutputString[i]);
+                Console.WriteLine();
             }
+            Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.Write("- End List -");
+            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.WriteLine();
         }
 
         public void AddDroidSequence(DroidCollection droidCollection)
@@ -134,11 +149,6 @@ namespace cis237assignment3
 
             //Protocol Droids
             int numberLanguagesInt;
-
-            //Utility Droids
-            bool toolboxBool;
-            bool computerConnectionBool;
-            bool armBool;
 
             //Janitor Droids
             bool trashCompactorBool;
@@ -157,9 +167,11 @@ namespace cis237assignment3
                 inputChar = DroidTypeMenu();
                 Console.WriteLine();
             }
-            int droidTypeInputInt = int.Parse(inputChar.KeyChar.ToString());
 
-            modelString = _droidList[droidTypeInputInt = 1];       
+            int droidTypeInputInt = int.Parse(inputChar.KeyChar.ToString());
+            Console.WriteLine($"inputChar = {inputChar.KeyChar.ToString()} droidTypeInputInt = {droidTypeInputInt}");
+
+            modelString = _droidList[droidTypeInputInt - 1];       
 
             int materialTypeInputInt = DroidMaterialMenu();
 
@@ -170,27 +182,46 @@ namespace cis237assignment3
             switch (droidTypeInputInt)
             {
                 case 1: //Protocol
-                    numberLanguagesInt = NumberOfLanguagesInput();
+                    numberLanguagesInt = NumberInput("Languages");
                     droidCollection.AddNewItem(materialString, modelString, colorString, numberLanguagesInt);
                     DroidAddedMessage();
                     break;
                 case 2://Utility
+                    BaseUtilityDroidInputs();
+                    droidCollection.AddNewItem(materialString, modelString, colorString, toolboxBool, computerConnectionBool, armBool);
                     break;
                 case 3://Janitor
+                    BaseUtilityDroidInputs();
+                    trashCompactorBool = BoolInput("a trash compactor");
+                    vacuumBool = BoolInput("a vacuum");
+                    droidCollection.AddNewItem(materialString, modelString, colorString,
+                        toolboxBool, computerConnectionBool, armBool, trashCompactorBool, vacuumBool);
                     break;
                 default://Astromech
+                    BaseUtilityDroidInputs();
+                    fireExtinquisher = BoolInput("fire extinquisher");
+                    numberShips = NumberInput("ships");
+                    droidCollection.AddNewItem(materialString, modelString, colorString,
+                        toolboxBool, computerConnectionBool, armBool, fireExtinquisher, numberShips);
                     break;
 
             }
 
         }
+        
+        private void BaseUtilityDroidInputs()
+        {
+            toolboxBool = BoolInput("a toolbox");
+            computerConnectionBool = BoolInput("a computer connection");
+            armBool = BoolInput("an arm");
+        }
 
         private ConsoleKeyInfo DroidTypeMenu()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             Console.Write("- Creating a New Droid -");
-            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("1) Protocol Droid");
@@ -265,18 +296,16 @@ namespace cis237assignment3
             return inputString;
         }
 
-        public int NumberOfLanguagesInput()
+        public int NumberInput(string typeOfInput)
         {
             int numbLangInt = 0;
             Console.WriteLine();
-            Console.Write("Enter the number or Languages you wish the droid to know: ");
+            Console.Write($"Enter the number of {typeOfInput} you wish the droid to know: ");
             string inputString = Console.ReadLine();
             if (inputString == "")
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
-                Console.ForegroundColor = ConsoleColor.White;
-                numbLangInt = NumberOfLanguagesInput();
+                ErrorMessage();
+                numbLangInt = NumberInput(typeOfInput);
             }
             else
             {
@@ -286,10 +315,8 @@ namespace cis237assignment3
                 }
                 catch
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Invalid Entry please try again.");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    numbLangInt = NumberOfLanguagesInput();
+                    ErrorMessage();
+                    numbLangInt = NumberInput(typeOfInput);
                 }
             }
             return numbLangInt;
@@ -298,6 +325,39 @@ namespace cis237assignment3
         public void DroidAddedMessage()
         {
             Console.WriteLine("Droid has been added to the bottom of the list");
+        }
+
+        public void ErrorMessage()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(" Invalid Entry please try again.");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public bool BoolInput(string typeOfItem)
+        {
+            ConsoleKeyInfo inputKey;
+            inputKey = GetBoolInput(typeOfItem);
+            while (inputKey.KeyChar != 'y' && inputKey.KeyChar != 'Y' && inputKey.KeyChar != 'n' && inputKey.KeyChar != 'N')
+            {
+                ErrorMessage();
+                inputKey = GetBoolInput(typeOfItem);
+            }
+            if (inputKey.KeyChar == 'y' || inputKey.KeyChar == 'Y')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public ConsoleKeyInfo GetBoolInput(string TypeOfItem)
+        {
+            Console.WriteLine($"Do you wish for your droid to have {TypeOfItem}?");
+            Console.WriteLine("(Y)es or (N)o");
+            return Console.ReadKey();
         }
 
         public void ExitMessage()
