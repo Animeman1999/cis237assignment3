@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Jeffrey Martin
+//CIS 237 Assignment 3
+//Due 10-19-2016
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +21,6 @@ namespace cis237assignment3
         //***************************************
         //Method
         //***************************************
-        public void AddNewItem() { }
 
         public void AddNewItem(string MaterialString, string ModelString, string ColorString, int NumberLanguagesInt)
         {
