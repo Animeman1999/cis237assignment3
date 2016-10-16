@@ -76,8 +76,7 @@ namespace cis237assignment3
             Console.WriteLine();
             while (inputChar.KeyChar != '1' && inputChar.KeyChar != '2' && inputChar.KeyChar != '3')
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
+                ErrorMessage();
                 inputChar = LoadMenuMessage();
                 Console.WriteLine();
             }
@@ -116,8 +115,7 @@ namespace cis237assignment3
             Console.WriteLine();
             while (inputChar.KeyChar != '1' && inputChar.KeyChar != '2' && inputChar.KeyChar != '3' && inputChar.KeyChar != '4')
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
+                ErrorMessage();
                 inputChar = MainMenuMessage();
                 Console.WriteLine();
             }
@@ -162,14 +160,12 @@ namespace cis237assignment3
             Console.WriteLine();
             while (inputChar.KeyChar != '1' && inputChar.KeyChar != '2' && inputChar.KeyChar != '3' && inputChar.KeyChar != '4')
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
+                ErrorMessage();
                 inputChar = DroidTypeMenu();
                 Console.WriteLine();
             }
 
             int droidTypeInputInt = int.Parse(inputChar.KeyChar.ToString());
-            Console.WriteLine($"inputChar = {inputChar.KeyChar.ToString()} droidTypeInputInt = {droidTypeInputInt}");
 
             modelString = _droidList[droidTypeInputInt - 1];       
 
@@ -228,7 +224,7 @@ namespace cis237assignment3
             Console.WriteLine("2) Utility Droid");
             Console.WriteLine("3) Janitor Droid");
             Console.WriteLine("4) Astromech Droid");
-            Console.Write("Press the number of the type Droid you wish create");
+            Console.Write("Press the number of the type Droid you wish create: ");
             return Console.ReadKey();
         }
 
@@ -242,7 +238,7 @@ namespace cis237assignment3
                 {
                     Console.WriteLine($"{index + 1}) {_materialList[index, 0]} - cost mulitpler is: {_materialList[index, 1]}");
                 }
-                Console.WriteLine("Press the number of the material you wish the droid made from.");
+                Console.Write("Press the number of the material you wish the droid made from: ");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             return Console.ReadKey();
@@ -252,31 +248,25 @@ namespace cis237assignment3
         {
             int materialTypeInt = 0;
             ConsoleKeyInfo inputChar = DroidMaterialMenuMessage();
-            Console.WriteLine($"intputchar = {inputChar.KeyChar.ToString()}");
             
             try
             {
                 materialTypeInt = int.Parse(inputChar.KeyChar.ToString());
-                Console.WriteLine($"materialTypeInt = {materialTypeInt} materialList.GetLength(0) = {_materialList.GetLength(0)}");
-                if ((materialTypeInt > 0) && (materialTypeInt < _materialList.GetLength(0)))
+                if ((materialTypeInt > 0) && (materialTypeInt <= _materialList.GetLength(0)))
                 {
                     //Valid choice
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Invalid Entry please try again.");
-                    inputChar = DroidMaterialMenuMessage();
-                    Console.WriteLine();
+                    ErrorMessage();
+                    materialTypeInt = DroidMaterialMenu();
                 }
             
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
+                ErrorMessage();
                 materialTypeInt = DroidMaterialMenu();
-                Console.WriteLine();
             }
             return materialTypeInt;
         }
@@ -288,9 +278,7 @@ namespace cis237assignment3
             string inputString = Console.ReadLine();
             if (inputString == "")
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Invalid Entry please try again.");
-                Console.ForegroundColor = ConsoleColor.White;
+                ErrorMessage();
                 inputString = DroidColorMenu();
             }
             return inputString;
@@ -355,9 +343,12 @@ namespace cis237assignment3
 
         public ConsoleKeyInfo GetBoolInput(string TypeOfItem)
         {
+            ConsoleKeyInfo tempConsoleKeyInfo;
             Console.WriteLine($"Do you wish for your droid to have {TypeOfItem}?");
             Console.WriteLine("(Y)es or (N)o");
-            return Console.ReadKey();
+            tempConsoleKeyInfo = Console.ReadKey();
+            Console.WriteLine();
+            return tempConsoleKeyInfo;
         }
 
         public void ExitMessage()
