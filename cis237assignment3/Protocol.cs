@@ -33,7 +33,8 @@ namespace cis237assignment3
 
         public override string ToString()
         {
-            return base.ToString() + " Speaks " + _numberLanguages.ToString() + " languages";
+            return base.ToString() + Environment.NewLine +
+                " Speaks " + _numberLanguages.ToString() + " languages";
         }
 
         public override void CalculateTotalCost()

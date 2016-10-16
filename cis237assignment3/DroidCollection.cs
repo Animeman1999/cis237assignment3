@@ -60,7 +60,9 @@ namespace cis237assignment3
                 {
                     if (droid != null)
                     {
-                        listOfAllDroids[counter] = droid.ToString();
+                        droid.CalculateTotalCost();
+                        listOfAllDroids[counter] = droid.ToString() + Environment.NewLine +
+                            " ***** Total Cost = " + droid.TotalCost + " *****";
                         counter++;
                     }
                 }

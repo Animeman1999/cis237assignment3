@@ -26,7 +26,7 @@ namespace cis237assignment3
         public override string ToString()
         {
             return base.ToString() + Environment.NewLine + " Fire Extinquisher = " + _fireExtinquisher +
-                Environment.NewLine + "Number of Ships = " + _numberShips;
+                Environment.NewLine + " Number of Ships = " + _numberShips;
         }
 
         public override void CalculateTotalCost()
