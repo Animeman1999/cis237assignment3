@@ -17,6 +17,15 @@ namespace cis237assignment3
         Droid[] droidItemsCollection;
         int droidItemsLengthInt;
 
+        //***************************************
+        //Properties
+        //***************************************
+
+        public int NumberOfDroidsInList
+        {
+            get { return droidItemsLengthInt; }
+        }
+
 
         //***************************************
         //Method
@@ -50,6 +59,10 @@ namespace cis237assignment3
             droidItemsLengthInt++;
         }
 
+        public void DeleteItem(int ItemToDelete)
+        {
+
+        }
         public string[] GetListOfAllDroids()
         {
             string[] listOfAllDroids = new string[droidItemsLengthInt];
@@ -69,6 +82,11 @@ namespace cis237assignment3
             }
 
             return listOfAllDroids;
+        }
+
+        public string GetASingleDroid(int WhichDroid)
+        {
+            return droidItemsCollection[WhichDroid].ToString();
         }
 
 
