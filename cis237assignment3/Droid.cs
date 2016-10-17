@@ -49,20 +49,34 @@ namespace cis237assignment3
         //Method
         //***************************************
 
+            /// <summary>
+            /// Used to calcualte the total cost
+            /// </summary>
         virtual public void CalculateTotalCost()
         {
+            //At the this level the total cost is the base cost.
             CalculateBaseCost();
             _totalCostDecimal = _baseCostDecimal;
         }
 
+        /// <summary>
+        /// Overide method to create information string for each droid
+        /// </summary>
+        /// <returns>string</returns>
         public override string ToString()
         {
             return _color_string + " " + _materialString + " "  + _modelString + " Droid" ;
         }
 
+        /// <summary>
+        /// Calculates the base cost for each dfoid type.
+        /// </summary>
         public void CalculateBaseCost()
         {
+            //Get the MaterialMultipler which is based on the tye of matterial used.
             decimal materialMultiplier = MaterialCostMultiplier(_materialString);
+
+            //Gets the cost for each type of model
             switch (_modelString)
             {
                 case "Protocol":
@@ -78,6 +92,7 @@ namespace cis237assignment3
                     _baseCostDecimal = 450m;
                     break;
             }
+            // Calculate the base cost now that we have the model cost and material multiplier
             _baseCostDecimal = _baseCostDecimal * materialMultiplier;
         }
 
@@ -106,6 +121,12 @@ namespace cis237assignment3
         //Constructor
         //***************************************
 
+            /// <summary>
+            /// Every droid will have these base parameters
+            /// </summary>
+            /// <param name="MaterialString">string</param>
+            /// <param name="ModelString">string</param>
+            /// <param name="ColorString">string</param>
         public Droid (string MaterialString, string ModelString, string ColorString)
         {
             _materialString = MaterialString;
