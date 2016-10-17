@@ -31,12 +31,19 @@ namespace cis237assignment3
         //Method
         //***************************************
 
+            /// <summary>
+            /// Adds data from Protocol droid to Droid ToString() method
+            /// </summary>
+            /// <returns>string</returns>
         public override string ToString()
         {
             return base.ToString() + Environment.NewLine +
                 " Speaks " + _numberLanguages.ToString() + " languages";
         }
 
+        /// <summary>
+        /// Adds the additional cost for the Protocol droid to the base Droid amount
+        /// </summary>
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
@@ -46,6 +53,13 @@ namespace cis237assignment3
         //Constructor
         //***************************************
 
+            /// <summary>
+            /// Has one additional parameter than the base Droid.
+            /// </summary>
+            /// <param name="MaterialString">string</param>
+            /// <param name="ModelString">string</param>
+            /// <param name="ColorString">string</param>
+            /// <param name="NumberLanguagesInt"></param>
         public Protocol(string MaterialString, string ModelString, string ColorString, int NumberLanguagesInt)
             : base(MaterialString, ModelString, ColorString)
         {

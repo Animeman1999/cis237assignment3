@@ -26,6 +26,11 @@ namespace cis237assignment3
         //Method
         //***************************************
 
+
+            /// <summary>
+            /// Adds Utility droid information to the Base droid ToString
+            /// </summary>
+            /// <returns>string</returns>
         public override string ToString()
         {
             return base.ToString() + Environment.NewLine + 
@@ -34,6 +39,10 @@ namespace cis237assignment3
                 " Arm = " + _armBool;
         }
 
+
+        /// <summary>
+        /// Adds the cost of each additional item added for the Utility Droid to the base Droid.
+        /// </summary>
         public override void CalculateTotalCost()
         {
             base.CalculateTotalCost();
@@ -45,6 +54,16 @@ namespace cis237assignment3
         //***************************************
         //Constructor
         //***************************************
+
+            /// <summary>
+            /// Has 3 additional parameters of the base Droid
+            /// </summary>
+            /// <param name="MaterialString">string</param>
+            /// <param name="ModelString">string</param>
+            /// <param name="ColorString">string</param>
+            /// <param name="ToolboxBool">bool</param>
+            /// <param name="ComputerConnectionBool">bool</param>
+            /// <param name="ArmBool">bool</param>
         public Utility(string MaterialString, string ModelString, string ColorString, bool ToolboxBool, bool ComputerConnectionBool, bool ArmBool)
             : base(MaterialString, ModelString, ColorString)
         {
