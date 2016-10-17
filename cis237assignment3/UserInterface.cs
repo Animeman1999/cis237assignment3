@@ -217,8 +217,10 @@ namespace cis237assignment3
             bool deleteDroid = BoolInput("Are you sure you want to delete the prevous droid?");
             if (deleteDroid)
             {
-                
-                Console.WriteLine("Droid Delted...not yet");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                droidCollection.DeleteItem(droidNumber);
+                Console.WriteLine("Droid Delted. Here is the new list.");
+                PrintDroidList(droidCollection.GetListOfAllDroids());
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -383,7 +385,10 @@ namespace cis237assignment3
             return tempConsoleKeyInfo;
         }
 
-
+        public void NoDroidsInListMessage()
+        {
+            Console.WriteLine("No droids in the list. Need to add droids before you can delete one.");
+        }
 
         public void ExitMessage()
         {

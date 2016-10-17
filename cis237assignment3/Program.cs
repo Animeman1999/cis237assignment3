@@ -83,8 +83,16 @@ namespace cis237assignment3
                         ui.AddDroidSequence(droidCollection);
                         break;
                     case 3:
-                        ui.PrintDroidList(droidCollection.GetListOfAllDroids());
-                        ui.DeleteDroid(droidCollection);
+                        if(droidCollection.NumberOfDroidsInList > 0)
+                        {
+                            ui.PrintDroidList(droidCollection.GetListOfAllDroids());
+                            ui.DeleteDroid(droidCollection);
+                        }
+                        else
+                        {
+                            ui.NoDroidsInListMessage();
+                        }
+                        
                         break;
                     default:
                         ui.ExitMessage();

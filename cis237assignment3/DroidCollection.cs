@@ -61,7 +61,16 @@ namespace cis237assignment3
 
         public void DeleteItem(int ItemToDelete)
         {
-
+            if (droidItemsLengthInt > 0)
+            {
+                for (int index = ItemToDelete; index < droidItemsLengthInt -1; index++)
+                {
+                    droidItemsCollection[index] = droidItemsCollection[index + 1];
+                }
+                droidItemsCollection[droidItemsLengthInt -1] = null;
+                droidItemsLengthInt = droidItemsLengthInt -1;
+            }
+                
         }
         public string[] GetListOfAllDroids()
         {
