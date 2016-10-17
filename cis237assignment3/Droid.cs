@@ -79,7 +79,6 @@ namespace cis237assignment3
                     break;
             }
             _baseCostDecimal = _baseCostDecimal * materialMultiplier;
-            Console.WriteLine("Calculate base Cost =" + _baseCostDecimal);
         }
 
         /// <summary>
