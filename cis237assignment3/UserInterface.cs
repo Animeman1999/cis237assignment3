@@ -236,7 +236,7 @@ namespace cis237assignment3
             {
                 case 1: //Protocol
                     //Get the number of languges from the user
-                    numberLanguagesInt = NumberInput("Languages", "know");
+                    numberLanguagesInt = NumberInput("How many languages do you wish the droid to understand?");
                     //Add droid to DroidCollection
                     droidCollection.AddNewItem(materialString, modelString, colorString, numberLanguagesInt);                   
                     break;
@@ -263,7 +263,7 @@ namespace cis237assignment3
                     //Find out if the user wants a fire extinguiser
                     fireExtinquisher = BoolInput("Do you wish for your droid to have fire extinquisher");
                     //Find out the number of ships the mech has data on
-                    numberShips = NumberInput("ships", "know");
+                    numberShips = NumberInput("How many ships do you wish the droid to have data on?");
                     //Add droid to DroidCollection
                     droidCollection.AddNewItem(materialString, modelString, colorString,
                         toolboxBool, computerConnectionBool, armBool, fireExtinquisher, numberShips);
@@ -314,13 +314,13 @@ namespace cis237assignment3
         private int GetDroidNumber(DroidCollection droidCollection)
         {
             //Get the number from the user
-            int numberOfDroid = NumberInput("Droid", "Delete");
+            int numberOfDroid = NumberInput("Which numbered droid do you wish to delete?");
 
             //Continue to get the user input until they enter a valid number
             while((numberOfDroid < 1) || (numberOfDroid > droidCollection.NumberOfDroidsInList))
             {
                 ErrorMessage();
-                numberOfDroid = NumberInput("Droid", "Delete");
+                numberOfDroid = NumberInput("Which numbered droid do you wish to delete?");
             }
             //Subtracting one to make it equal to the index
             return numberOfDroid - 1;
@@ -360,7 +360,7 @@ namespace cis237assignment3
         }
 
         /// <summary>
-        /// Creates the  Droid Materail Menu and gets the users input
+        /// Creates the Droid Materail Menu and gets the users input
         /// </summary>
         /// <returns>ConsoleKeyInf</returns>
         private ConsoleKeyInfo DroidMaterialMenuMessage()
@@ -384,101 +384,147 @@ namespace cis237assignment3
         }
 
         /// <summary>
-        /// Makes suer that the input from the DroidMaterialMenuMessage is valid and if so casts it into an integer
+        /// Makes sure that the input from the DroidMaterialMenuMessage is valid and if so casts it into an integer
         /// </summary>
         /// <returns>int</returns>
         private int DroidMaterialMenu()
         {
+            bool NotValidData = true;
             int materialTypeInt = 0;
             //Gets the users input
-            ConsoleKeyInfo inputChar = DroidMaterialMenuMessage();
+            ConsoleKeyInfo inputChar;
             
-            try
+            while(NotValidData)
             {
-                //Parse the data to see if it causes an error
-                materialTypeInt = int.Parse(inputChar.KeyChar.ToString());
-
-                //Check to see if the integer is with in the valid range
-                if ((materialTypeInt > 0) && (materialTypeInt <= _materialList.GetLength(0)))
-                {
-                    //Valid choice
-                }
-                else
-                {
-                    //Re-call the method since it is not within the valid range
-                    ErrorMessage();
-                    materialTypeInt = DroidMaterialMenu();
-                }            
-            }
-            catch
-            {
-                //Re-call the method sine it is not an integer
-                ErrorMessage();
-                materialTypeInt = DroidMaterialMenu();
-            }
-            return materialTypeInt;
-        }
-
-        public string DroidColorMenu()
-        {
-            Console.WriteLine();
-            Console.Write("Enter the color you wish the droid to be: ");
-            string inputString = Console.ReadLine();
-            if (inputString == "")
-            {
-                ErrorMessage();
-                inputString = DroidColorMenu();
-            }
-            return inputString;
-        }
-
-        public int NumberInput(string typeOfInput, string whatToDoy)
-        {
-            int numbLangInt = 0;
-            Console.WriteLine();
-            Console.Write($"Enter the number of {typeOfInput} you wish the droid to {whatToDoy}: ");
-            string inputString = Console.ReadLine();
-            if (inputString == "")
-            {
-                ErrorMessage();
-                numbLangInt = NumberInput(typeOfInput, whatToDoy);
-            }
-            else
-            {
+                inputChar = DroidMaterialMenuMessage();
                 try
                 {
-                    numbLangInt = int.Parse(inputString);
+                    //Parse the data to see if it causes an error
+                    materialTypeInt = int.Parse(inputChar.KeyChar.ToString());
+
+                    //Check to see if the integer is within the valid range
+                    if ((materialTypeInt > 0) && (materialTypeInt <= _materialList.GetLength(0)))
+                    {
+                        NotValidData = false;
+                    }
+                    else
+                    {
+                        ErrorMessage();
+                    }            
                 }
                 catch
                 {
                     ErrorMessage();
-                    numbLangInt = NumberInput(typeOfInput, whatToDoy);
+                }
+            }
+            return materialTypeInt;
+        }
+
+        /// <summary>
+        /// Gets the color from the user
+        /// </summary>
+        /// <returns></returns>
+        public string DroidColorMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write("Enter the color you wish the droid to be: ");
+            string inputString = Console.ReadLine();
+            //Allows any string to be entered as long as there is one.
+            while (inputString == "")
+            {
+                ErrorMessage();
+                Console.Write("Enter the color you wish the droid to be: ");
+                inputString = Console.ReadLine();
+            }
+            return inputString;
+        }
+
+        /// <summary>
+        /// Generic user interface to get an integer for QuestionString asked.
+        /// </summary>
+        /// <param name="QuestionString">string</param>
+        /// <returns>int</returns>
+        public int NumberInput(string QuestionString)
+        {
+            bool dataNotValid = true;
+            int numbLangInt = 0;
+
+            string inputString = GetNumberInput(QuestionString);
+            //If no input get error message and try again
+
+            while (dataNotValid)
+            {
+                if (inputString == "")
+                {
+                    ErrorMessage();
+                    inputString = GetNumberInput(QuestionString);
+                }
+                else
+                {
+                    //Make sure there is an integer inside
+                    try
+                    {
+                        numbLangInt = int.Parse(inputString);
+                        dataNotValid = false;
+                    }
+                    catch
+                    {
+                        ErrorMessage();
+                        inputString = GetNumberInput(QuestionString);
+                    }
                 }
             }
             return numbLangInt;
         }
 
+        public string GetNumberInput(string QuestionString)
+        {
+            Console.WriteLine();
+            Console.Write(QuestionString + " ");
+            //Get the users input
+            string inputString = Console.ReadLine();
+            return inputString;
+        }
+
+        /// <summary>
+        /// Message displayed when a droid is added
+        /// </summary>
         public void DroidAddedMessage()
         {
             Console.WriteLine("Droid has been added to the bottom of the list");
         }
 
+        /// <summary>
+        /// Standard error message
+        /// </summary>
         public void ErrorMessage()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine();
             Console.WriteLine(" Invalid Entry please try again.");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        /// <summary>
+        /// Generic method to test if a yes/no question was answered correctly and assign appropiate bool value 
+        /// </summary>
+        /// <param name="YesNoQuestion"></param>
+        /// <returns>bool</returns>
         public bool BoolInput(string YesNoQuestion)
         {
             ConsoleKeyInfo inputKey;
+            //Print out the YesNoQuestion and get the users response
             inputKey = GetBoolInput(YesNoQuestion);
+
+            //Get user response until correct data input
             while (inputKey.KeyChar != 'y' && inputKey.KeyChar != 'Y' && inputKey.KeyChar != 'n' && inputKey.KeyChar != 'N')
             {
                 ErrorMessage();
                 inputKey = GetBoolInput(YesNoQuestion);
             }
+
+            //Assign correct bool value
             if (inputKey.KeyChar == 'y' || inputKey.KeyChar == 'Y')
             {
                 return true;
@@ -489,6 +535,11 @@ namespace cis237assignment3
             }
         }
 
+        /// <summary>
+        /// Generic method to print out the YesNoQuestion and get the users response
+        /// </summary>
+        /// <param name="YesNoQuestion"></param>
+        /// <returns>ConsoleKeyInfo</returns>
         public ConsoleKeyInfo GetBoolInput(string YesNoQuestion)
         {
             ConsoleKeyInfo tempConsoleKeyInfo;
@@ -499,11 +550,17 @@ namespace cis237assignment3
             return tempConsoleKeyInfo;
         }
 
+        /// <summary>
+        /// Message to print when no droids are in the DroidCollection
+        /// </summary>
         public void NoDroidsInListMessage()
         {
             Console.WriteLine("No droids in the list. Need to add droids before you can delete one.");
         }
 
+        /// <summary>
+        /// Message to display when exiting the program.
+        /// </summary>
         public void ExitMessage()
         {
             Console.WriteLine("Exiting the Jawas of Tatooine Droids Sales List Program" );
