@@ -300,8 +300,7 @@ namespace cis237assignment3
             {//Delete the droid now that it has been confirmed and tell the user it has been deleted and reprint the list
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 droidCollection.DeleteItem(droidNumber);
-                Console.WriteLine("Droid Delted. Here is the new list.");
-                PrintDroidList(droidCollection.GetListOfAllDroids());
+                Console.WriteLine("Droid Delted!");
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -543,6 +542,7 @@ namespace cis237assignment3
         public ConsoleKeyInfo GetBoolInput(string YesNoQuestion)
         {
             ConsoleKeyInfo tempConsoleKeyInfo;
+            Console.WriteLine();
             Console.WriteLine($"{YesNoQuestion}?");
             Console.WriteLine("(Y)es or (N)o");
             tempConsoleKeyInfo = Console.ReadKey();
