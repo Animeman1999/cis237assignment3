@@ -116,6 +116,7 @@ It may be beneficial for you to create extra methods within the droid sub classe
 ## Outside Resources Used
 http://www.c-sharpcorner.com/code/448/code-to-auto-maximize-console-application-according-to-screen-width-in-c-sharp.aspx
 
+David Barnes - cis237assingment1 - used your example of adding objects into a collection
 
 ## Known Problems, Issues, And/Or Errors in the Program
 None
