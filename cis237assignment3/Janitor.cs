@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace cis237assignment3
 {
-    class Janitor : Utility
+    public class Janitor : Utility
     {
         //***************************************
         //Variables

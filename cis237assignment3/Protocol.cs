@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace cis237assignment3
 {
-    class Protocol : Droid
+    public class Protocol : Droid
     {
         //***************************************
         //Variables

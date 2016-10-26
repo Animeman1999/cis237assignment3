@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace cis237assignment3
 {
-    class DroidCollection : IDroidCollection
+    public class DroidCollection : IDroidCollection
     {
         //***************************************
         //Variables

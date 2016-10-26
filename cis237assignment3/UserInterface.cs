@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;//Needed to maxamize the console
 
 namespace cis237assignment3
 {
-    class UserInterface
+    public class UserInterface
     {
         //***************************************
         //Variables
